@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Friend Finder</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style id="style-1-cropbar-clipper"></style>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://use.fontawesome.com/96a9ff5940.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>
+		Survey Questions
+		</h2>
+		<hr>
+		<h3><strong>About You</strong></h3>
+		<h4>
+		<form role="form">
+            <div class="form-group">
+               	<label for="friend-name">Name (Required)</label>
+                <input type="text" class="form-control" id="friendName">
+            </div>
+            <div class="form-group">
+                <label for="friend-photo">Link to Photo Image (Required)</label>
+                <input type="text" class="form-control" id="friendPhoto">
+			</div>
+            <hr>
+            <div class="form-group">
+            	<h3><strong>Question 1</strong></h3>
+                <label for="q1">Your mind is always buzzing with unexplored ideas and plans.</label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+            <div class="form-group">
+            	<h3><strong>Question 2</strong></h3>
+                <label for="q2">Generally speaking, you rely more on your experience than your imagination.</label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+            <div class="form-group">
+            	<h3><strong>Question 3</strong></h3>
+                <label for="q3">You find it easy to stay relaxed and focused even when there is some pressure.</strong></label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+            <div class="form-group">
+            	<h3><strong>Question 4</strong></h3>
+                <label for="q4">You rarely do something just out of sheer curiosity.</strong></label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+            <div class="form-group">
+            	<h3><strong>Question 5</strong></h3>
+                <label for="q5">People can rarely upset you.</strong></label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+            <div class="form-group">
+            	<h3><strong>Question 6</strong></h3>
+                <label for="q6">It is often difficult for you to relate to other people’s feelings.</strong></label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+            <div class="form-group">
+            	<h3><strong>Question 7</strong></h3>
+                <label for="q7">In a discussion, truth should be more important than people’s sensitivities.</label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+            <div class="form-group">
+            	<h3><strong>Question 8</strong></h3>
+                <label for="q8">You rarely get carried away by fantasies and ideas.</label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+            <div class="form-group">
+            	<h3><strong>Question 9</strong></h3>
+                <label for="q9">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+            <div class="form-group">
+            	<h3><strong>Question 10</strong></h3>
+                <label for="q10">You feel more energetic after spending time with a group of people.</label>
+                <select class="form-control" id="sel1">
+   					<option>1 (Strongly Disagree)</option>
+    				<option>2</option>
+	  		 		<option>3</option>
+    				<option>4</option>
+    				<option>5 (Strongly Agree)</option>
+  				</select>
+            </div>
+        </form>
+		</h4>
+        <button type="submit" class="btn btn-primary submit"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
+		<footer class="footer">
+			<div class="container">
+				<hr>
+				<p>
+					<a href="/api/friends">API Friends List</a>
+					| 
+					<a href="https://github.com/nxanttopoulos/Friend-Finder">GitHub Repo</a>
+				</p>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>
