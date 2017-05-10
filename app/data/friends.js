@@ -112,54 +112,6 @@ var friendArray = [
 	"3",
 	"2"
 	]
-  },
-{
-	name: "Alex",
-	photo: "https://i.ytimg.com/vi/PObLY87wyIU/maxresdefault.jpg",
-	scores: [
-	"2",
-	"3",
-	"3",
-	"3",
-	"4",
-	"3",
-	"3",
-	"3",
-	"1",
-	"1"
-	]
-  },
-{
-	name: "Alex",
-	photo: "https://i.ytimg.com/vi/PObLY87wyIU/maxresdefault.jpg",
-	scores: [
-	"2",
-	"3",
-	"3",
-	"3",
-	"5",
-	"3",
-	"3",
-	"3",
-	"1",
-	"1"
-	]
-  },
-{
-	name: "Alex",
-	photo: "https://i.ytimg.com/vi/PObLY87wyIU/maxresdefault.jpg",	
-	scores: [
-	"2",
-	"3",
-	"3",
-	"3",
-	"5",
-	"3",
-	"3",
-	"3",
-	"1",
-	"1"
-	]
   }
 ];
 module.exports = friendArray;
