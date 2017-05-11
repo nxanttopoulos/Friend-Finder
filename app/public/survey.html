@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
     <meta charset="utf-8">
     <title>Friend Finder</title>
@@ -10,16 +9,6 @@
     <style id="style-1-cropbar-clipper"></style>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://use.fontawesome.com/96a9ff5940.js"></script>
-    <style>
-    .modal-header, .close {
-      color:white !important;
-      text-align: center;
-      font-size: 30px;
-      }
-     .modal-footer {
-      background-color: #f9f9f9;
-    }
-  </style>
 </head>
 <body>
     <div class="container">
@@ -39,18 +28,17 @@
                     <input type="text" class="form-control" id="friendPhoto">
                 </div>
                 <hr>
-                <div id="ex1" style="display:none;" class="modal modal fade">
-                    <div class="modal-dialog modal-lg">
+                <div id="ex1" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h2 class="modal-title">Best Match</h2>
+                                <h3 class="modal-title">Best Match</h3>
                             </div>
-                            <hr>
                             <div class="modal-body">
-                                <img src="" class="imagepreview" style="width: 100%;">
+                                <h4 class ="nameModal"></h4>
+                                <img src="" class="imageModal" style="width: 75%; height:75%">
                             </div>
-                            <hr>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" id="closed" data-dismiss="modal">Close</button>
                             </div>
@@ -260,10 +248,10 @@
                     for (var h = 0; h < friendData.length; h++) {
                         if (h === answer) {
                             console.log("Your Match is: \n "+ JSON.stringify(friendData[h]));
-                            $("#model-body").html("<h2> " + friendData[h].name + " </h2>");
-                            $('.imagepreview').attr('src', friendData[h].photo);
-                            $("#ex1").modal();
-                            
+                            $(".nameModal").html(""+friendData[h].name+"");
+                            $('.imageModal').attr('src', friendData[h].photo);
+                            $(".submit").attr('data-target', '#ex1');
+                            $(".submit").attr('data-toggle','modal');
                         }
                     }
                 });
