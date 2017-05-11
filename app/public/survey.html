@@ -10,8 +10,17 @@
     <style id="style-1-cropbar-clipper"></style>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://use.fontawesome.com/96a9ff5940.js"></script>
+    <style>
+    .modal-header, .close {
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+      }
+     .modal-footer {
+      background-color: #f9f9f9;
+    }
+  </style>
 </head>
-
 <body>
     <div class="container">
         <h2>
@@ -253,7 +262,8 @@
                             console.log("Your Match is: \n "+ JSON.stringify(friendData[h]));
                             $("#model-body").html("<h2> " + friendData[h].name + " </h2>");
                             $('.imagepreview').attr('src', friendData[h].photo);
-                            $("#ex1").modal("show");
+                            $("#ex1").modal();
+                            
                         }
                     }
                 });
