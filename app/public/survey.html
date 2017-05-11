@@ -250,6 +250,7 @@
                     var answer = Array.min(finalList);
                     for (var h = 0; h < friendData.length; h++) {
                         if (h === answer) {
+                            console.log("Your Match is: \n "+ JSON.stringify(friendData[h]));
                             $("#model-body").html("<h2> " + friendData[h].name + " </h2>");
                             $('.imagepreview').attr('src', friendData[h].photo);
                             $("#ex1").modal("show");
