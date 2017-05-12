@@ -172,7 +172,7 @@
                 </div>
             </form>
         </h4>
-        <button type="submit" class="btn btn-primary submit" data-target="#ex1"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
+        <button type="submit" class="btn btn-primary submit"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
         <footer class="footer">
             <div class="container">
                 <hr>
@@ -225,7 +225,6 @@ var start = function() {
           Array.min = function(array) {
               return array.indexOf(Math.min.apply(Math, array));
           };
-          var reduction = Math.floor(Math.random() * 4) + 1;
           var currentURL = window.location.origin;
           $.ajax({
                 url: currentURL + "/api/friends",
@@ -259,17 +258,9 @@ var start = function() {
                 var answer = Array.min(finalList);
                 for (var h = 0; h < friendData.length; h++) {
                     if (h === answer) {
-                      if (h===0){
                         console.log("Your Match is: \n "+ JSON.stringify(friendData[h]));
                         $(".nameModal").html(""+friendData[h].name+"");
                         $('.imageModal').attr('src', friendData[h].photo);
-                        $(".submit").attr('data-toggle','modal');
-                      } else {
-                        console.log("Your Match is: \n "+ JSON.stringify(friendData[h-reduction]));
-                        $(".nameModal").html(""+friendData[h-reduction].name+"");
-                        $('.imageModal').attr('src', friendData[h-reduction].photo);
-                        $(".submit").attr('data-toggle','modal');
-                      }
                     }
                 }
               });
