@@ -51,7 +51,7 @@ var friendArray = [
   },
 {
 	name: "Lou Ritter",
-	photo: "https://m.facebook.com/photo.php?fbid=10208500699025296&id=1542229019&set=a.1549418665704.77596.1542229019&source=11",
+	photo: "https://i.ytimg.com/vi/PObLY87wyIU/maxresdefault.jpg",
 	scores: [
 	"4",
 	"3",
