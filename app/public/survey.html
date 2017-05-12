@@ -29,6 +29,7 @@
                 </div>
                 <hr>
                 <div id="ex1" class="modal fade" role="dialog">
+                  <button type="button" style = "display:none" id="ex2" data-toggle="modal" data-target="#ex1">Launch modal</button>
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -171,7 +172,7 @@
                 </div>
             </form>
         </h4>
-        <button type="submit" class="btn btn-primary submit"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
+        <button type="submit" class="btn btn-primary submit" data-target="#ex1"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
         <footer class="footer">
             <div class="container">
                 <hr>
@@ -185,113 +186,115 @@
 </body>
 </html>
 <script type="text/javascript">
-  $(document).ready(function(){
+var start = function() {
+        if ($("#friendName").val() === "" || $("#friendPhoto").val() === "" || $("#q1").val() === "" || $("#q2").val() === "" || $("#q3").val() === "" || $("#q4").val() === "" || $("#q5").val() === "" || $("#q6").val() === "" || $("#q7").val() === "" || $("#q8").val() === "" || $("#q9").val() === "" || $("#q10").val() === "") {
+            alert("Please fill out all fields before submitting!");
+            $("#friendName").val("");
+            $("#friendPhoto").val("");
+            $("#q1").val("");
+            $("#q2").val("");
+            $("#q3").val("");
+            $("#q4").val("");
+            $("#q5").val("");
+            $("#q6").val("");
+            $("#q7").val("");
+            $("#q8").val("");
+            $("#q9").val("");
+            $("#q10").val("");
+        } else {
+          var newFriend = {
+              name: $("#friendName").val().trim(),
+              photo: $("#friendPhoto").val().trim(),
+              scores: [$("#q1").val(),
+                  $("#q1").val(),
+                  $("#q2").val(),
+                  $("#q3").val(),
+                  $("#q4").val(),
+                  $("#q5").val(),
+                  $("#q6").val(),
+                  $("#q7").val(),
+                  $("#q8").val(),
+                  $("#q9").val(),
+                  $("#q10").val()
+              ]
+          };
+          var newScore = 0;
+          for (var i = 0; i < newFriend.scores.length; i++) {
+              newScore += parseInt(newFriend.scores[i]);
+          }
+          Array.min = function(array) {
+              return array.indexOf(Math.min.apply(Math, array));
+          };
+          var reduction = Math.floor(Math.random() * 4) + 1;
+          var currentURL = window.location.origin;
+          $.ajax({
+                url: currentURL + "/api/friends",
+                method: "GET"
+            })
+            .done(function(friendData) {
+                var friendScoresRaw = [];
+                var friendCheck = 0;
+                var checkList = [];
+                var finalList = [];
+                for (var m = 0; m < friendData.length; m++) {
+                    friendScoresRaw.push(friendData[m].scores);
+                }
+                for (var i = 0; i < friendScoresRaw.length; i++) {
+                    var friendScores = [];
+                    for (var j = 0; j < friendScoresRaw[i].length; j++) {
+                        friendScores.push(parseInt(friendScoresRaw[i][j]));
+                    }
+                    friendCheck = 0;
+                    if (friendScores.length > 9) {
+                        for (var k = 0; k < friendScores.length; k++) {
+                            friendCheck += friendScores[k];
+                        }
+                        checkList.push(friendCheck)
+                    }
+                }
+                for (var i = 0; i < checkList.length; i++) {
+                    var absValue = Math.abs(checkList[i] - newScore);
+                    finalList.push(absValue);
+                }
+                var answer = Array.min(finalList);
+                for (var h = 0; h < friendData.length; h++) {
+                    if (h === answer) {
+                      if (h===0){
+                        console.log("Your Match is: \n "+ JSON.stringify(friendData[h]));
+                        $(".nameModal").html(""+friendData[h].name+"");
+                        $('.imageModal').attr('src', friendData[h].photo);
+                        $(".submit").attr('data-toggle','modal');
+                      } else {
+                        console.log("Your Match is: \n "+ JSON.stringify(friendData[h-reduction]));
+                        $(".nameModal").html(""+friendData[h-reduction].name+"");
+                        $('.imageModal').attr('src', friendData[h-reduction].photo);
+                        $(".submit").attr('data-toggle','modal');
+                      }
+                    }
+                }
+              });
+          $.post("/api/friends", newFriend,
+              function(data) {
+                  $("#friendName").val("");
+                  $("#friendPhoto").val("");
+                  $("#q1").val("");
+                  $("#q2").val("");
+                  $("#q3").val("");
+                  $("#q4").val("");
+                  $("#q5").val("");
+                  $("#q6").val("");
+                  $("#q7").val("");
+                  $("#q8").val("");
+                  $("#q9").val("");
+                  $("#q10").val("");
+                  $("#ex2").trigger("click");
+              });
+        }
+}
+$(document).ready(function(){
     $(".submit").on("click", function(event) {
       event.preventDefault();
-      if ($("#friendName").val() === "" || $("#friendPhoto").val() === "" || $("#q1").val() === "" || $("#q2").val() === "" || $("#q3").val() === "" || $("#q4").val() === "" || $("#q5").val() === "" || $("#q6").val() === "" || $("#q7").val() === "" || $("#q8").val() === "" || $("#q9").val() === "" || $("#q10").val() === "") {
-          alert("Please fill out all fields before submitting!");
-          $("#friendName").val("");
-          $("#friendPhoto").val("");
-          $("#q1").val("");
-          $("#q2").val("");
-          $("#q3").val("");
-          $("#q4").val("");
-          $("#q5").val("");
-          $("#q6").val("");
-          $("#q7").val("");
-          $("#q8").val("");
-          $("#q9").val("");
-          $("#q10").val("");
-      } else {
-        var newFriend = {
-            name: $("#friendName").val().trim(),
-            photo: $("#friendPhoto").val().trim(),
-            scores: [$("#q1").val(),
-                $("#q1").val(),
-                $("#q2").val(),
-                $("#q3").val(),
-                $("#q4").val(),
-                $("#q5").val(),
-                $("#q6").val(),
-                $("#q7").val(),
-                $("#q8").val(),
-                $("#q9").val(),
-                $("#q10").val()
-            ]
-        };
-        var newScore = 0;
-        for (var i = 0; i < newFriend.scores.length; i++) {
-            newScore += parseInt(newFriend.scores[i]);
-        }
-        Array.min = function(array) {
-            return array.indexOf(Math.min.apply(Math, array));
-        };
-        var reduction = Math.floor(Math.random() * 4) + 1;
-        var currentURL = window.location.origin;
-        $.ajax({
-              url: currentURL + "/api/friends",
-              method: "GET"
-          })
-          .done(function(friendData) {
-              var friendScoresRaw = [];
-              var friendCheck = 0;
-              var checkList = [];
-              var finalList = [];
-              for (var m = 0; m < friendData.length; m++) {
-                  friendScoresRaw.push(friendData[m].scores);
-              }
-              for (var i = 0; i < friendScoresRaw.length; i++) {
-                  var friendScores = [];
-                  for (var j = 0; j < friendScoresRaw[i].length; j++) {
-                      friendScores.push(parseInt(friendScoresRaw[i][j]));
-                  }
-                  friendCheck = 0;
-                  if (friendScores.length > 9) {
-                      for (var k = 0; k < friendScores.length; k++) {
-                          friendCheck += friendScores[k];
-                      }
-                      checkList.push(friendCheck)
-                  }
-              }
-              for (var i = 0; i < checkList.length; i++) {
-                  var absValue = Math.abs(checkList[i] - newScore);
-                  finalList.push(absValue);
-              }
-              var answer = Array.min(finalList);
-              for (var h = 0; h < friendData.length; h++) {
-                  if (h === answer) {
-                    if (h===0){
-                      console.log("Your Match is: \n "+ JSON.stringify(friendData[h]));
-                      $(".nameModal").html(""+friendData[h].name+"");
-                      $('.imageModal').attr('src', friendData[h].photo);
-                      $(".submit").attr('data-target', '#ex1');
-                      $(".submit").attr('data-toggle','modal');
-                    } else {
-                      console.log("Your Match is: \n "+ JSON.stringify(friendData[h-reduction]));
-                      $(".nameModal").html(""+friendData[h-reduction].name+"");
-                      $('.imageModal').attr('src', friendData[h-reduction].photo);
-                      $(".submit").attr('data-target', '#ex1');
-                      $(".submit").attr('data-toggle','modal');
-                    }
-                  }
-              }
-            });
-        $.post("/api/friends", newFriend,
-            function(data) {
-                $("#friendName").val("");
-                $("#friendPhoto").val("");
-                $("#q1").val("");
-                $("#q2").val("");
-                $("#q3").val("");
-                $("#q4").val("");
-                $("#q5").val("");
-                $("#q6").val("");
-                $("#q7").val("");
-                $("#q8").val("");
-                $("#q9").val("");
-                $("#q10").val("");
-            });
-      }
+      start();
     });
   });
 </script>
