@@ -206,7 +206,6 @@ var start = function() {
               name: $("#friendName").val().trim(),
               photo: $("#friendPhoto").val().trim(),
               scores: [$("#q1").val(),
-                  $("#q1").val(),
                   $("#q2").val(),
                   $("#q3").val(),
                   $("#q4").val(),
@@ -219,13 +218,18 @@ var start = function() {
               ]
           };
           var newScore = 0;
+
           for (var i = 0; i < newFriend.scores.length; i++) {
               newScore += parseInt(newFriend.scores[i]);
           }
+
+          console.log("newscore is: "+ newScore);
           Array.min = function(array) {
               return array.indexOf(Math.min.apply(Math, array));
           };
+
           var currentURL = window.location.origin;
+
           $.ajax({
                 url: currentURL + "/api/friends",
                 method: "GET"
@@ -238,11 +242,13 @@ var start = function() {
                 for (var m = 0; m < friendData.length; m++) {
                     friendScoresRaw.push(friendData[m].scores);
                 }
+                console.log("friendScoresRaw: "+ friendScoresRaw);
                 for (var i = 0; i < friendScoresRaw.length; i++) {
                     var friendScores = [];
                     for (var j = 0; j < friendScoresRaw[i].length; j++) {
                         friendScores.push(parseInt(friendScoresRaw[i][j]));
                     }
+                    console.log("friendScores: " +friendScores);
                     friendCheck = 0;
                     if (friendScores.length > 9) {
                         for (var k = 0; k < friendScores.length; k++) {
@@ -251,11 +257,24 @@ var start = function() {
                         checkList.push(friendCheck)
                     }
                 }
+                console.log("checkList: " + checkList);
                 for (var i = 0; i < checkList.length; i++) {
                     var absValue = Math.abs(checkList[i] - newScore);
                     finalList.push(absValue);
                 }
-                var answer = Array.min(finalList);
+                console.log("finalList: "+ finalList);
+                var answerArray = [];
+                for (var l=0; l<finalList.length; l++){
+                    if (finalList[l] ==! 0) {
+                        answerArray.push(finalList[l]);
+                    }
+
+                }
+                var answer = Math.abs(Array.min(answerArray));
+
+                console.log("answer: " + answer);
+
+
                 for (var h = 0; h < friendData.length; h++) {
                     if (h === answer) {
                         console.log("Your Match is: \n "+ JSON.stringify(friendData[h]));
